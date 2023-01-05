@@ -2,6 +2,12 @@ import React from 'react';
 import './App.css';
 import Timer from './components/Timer';
 
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+
 class App extends React.Component {
 
   state = {
@@ -22,18 +28,26 @@ class App extends React.Component {
     const { showTimer } = this.state;
 
     return (
-      <div>
-        <header>
-          <h1>
-            MEDITATION MOMENT
-          </h1>
-        </header>
+      <div id="app">
+          <Card sx={{ maxWidth: 345 }}>
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  MEDITATION MOMENT
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  { showTimer === true && <Timer />}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
 
-        { showTimer === true && <Timer />}
-
-        <button onClick={this.toggleTimer}>
-          { showTimer ? 'ESCONDER TIMER' : 'LIGAR TIMER' }
-        </button>
+            <Button
+            variant="contained"
+            onClick={this.toggleTimer}
+          >
+            { showTimer ? 'ESCONDER TIMER' : 'LIGAR TIMER' }
+          </Button>
+          </Card>
       </div>
     );
   }
